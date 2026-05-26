@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Tailwind v4 Custom Theme Variables configuration */
+@theme {
+  --color-background: rgb(9 9 11);
+  --color-surface: rgb(24 24 27);
+  --color-muted: rgb(39 39 42);
+  --color-border: rgb(63 63 70);
+  
+  --color-text-main: rgb(244 244 245);
+  --color-text-sub: rgb(161 161 170);
+  
+  --color-brand-accent: rgb(59 130 246);
+  --color-brand-accent-hover: rgb(37 99 235);
+}
+
+/* Global Document Reset Styles */
+@layer base {
+  :root {
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #09090b;
+  }
+
+  /* Premium, thin custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #09090b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+}
+
+/* Tailwind v4 Utility Engine Registrations */
+@utility transition-fluid {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 400ms;
+}
+
+@utility glass-panel {
+  background: rgba(24, 24, 27, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(63, 63, 70, 0.3);
+}
+
+@utility scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Operational Keyframe Implementations */
+@keyframes scroll-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility animate-scroll {
+  animation: scroll-marquee 40s linear infinite;
+}
+
+@keyframes curve-move {
+  from { startOffset: 0%; }
+  to { startOffset: -100%; }
+}
+
+@utility animate-curve-scroll {
+  animation: curve-move 30s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Print Invoice Engine Restructuring */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #invoice-print, #invoice-print * {
+    visibility: visible;
+  }
+  #invoice-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+}
